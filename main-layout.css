@@ -1,0 +1,95 @@
+:root {
+    --background-color: white;
+    --background-color-alt: #d9d9d9;
+    --light-gray: #e6e6e6;
+    --dark-gray: #5b5b5b;
+    --main-color: #a6a6a6;
+    --accent-color: #1b1b1b;
+}
+
+div.main-layout > nav {
+    grid-area: nav;
+    width: 95%;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    
+    background-color: var(--background-color);
+    padding-left: 10px;
+}
+
+div.main-layout > nav > ul { 
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    
+    margin: 0;
+    padding: 0;
+    
+    list-style: none;
+}
+
+div.main-layout > nav > ul > li {
+    margin-left: 60px;
+}
+
+div.main-layout > main {
+    grid-area: main;
+    background-color: var(--main-color);
+    padding: 20px;
+}
+
+div.main-layout > aside {
+    grid-area: aside;
+    background-color: var(--background-color-alt);
+    padding: 10px 10px 10px 20px;
+}
+
+div.main-layout > footer {
+    grid-area: footer;
+    background-color: var(--background-color);
+    padding: 10px;
+}
+
+div.main-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 6fr 1fr;
+}
+
+@media only screen and (max-width: 768px) {
+    div.main-layout {
+        grid-template-areas: 
+        "nav nav"
+        "main main"
+        "footer footer";
+        
+        margin: auto 0% auto auto;
+    }
+    
+    div.main-layout > aside {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+    div.main-layout {
+        grid-template-areas: 
+        "nav nav"
+        "main aside"
+        "footer footer";
+        
+        margin: auto 0% auto 1%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    div.main-layout {
+        grid-template-areas: 
+            "nav nav"
+            "main aside"
+            "footer footer";
+        margin: auto 0% auto 3%;
+    }
+}
