@@ -5,18 +5,29 @@
     --dark-gray: #5b5b5b;
     --main-color: #a6a6a6;
     --accent-color: #1b1b1b;
+    
+    --nav-button-size: 25px;
+    --nav-button-size-opposite: -25px;
+    
+    --shadow-size: 5px;
+    --shadow-size-opposite: -5px;
+}
+
+body {
+    margin: 0px;
 }
 
 div.main-layout > nav {
     grid-area: nav;
-    width: 95%;
     
     display: flex;
-    align-items: center;
+    align-items: stretch;
     flex-direction: row-reverse;
     
+    /*margin-bottom: var(--shadow-size);*/
+    z-index: 100;
     background-color: var(--background-color);
-    padding-left: 10px;
+    box-shadow: 0 2px var(--shadow-size) rgba(0, 0, 0, .16);
 }
 
 div.main-layout > nav > ul { 
@@ -31,19 +42,73 @@ div.main-layout > nav > ul {
 }
 
 div.main-layout > nav > ul > li {
-    margin-left: 60px;
+    display: inline-block;
+    position: relative;
+    padding-left: var(--nav-button-size);
+    padding-right: var(--nav-button-size);
+}
+
+div.main-layout > nav > ul > li:hover {
+    background-color: var(--light-gray);
+}
+
+div.main-layout > nav > ul > li > a::before {
+    content: '';
+    display: block;
+    position: absolute;
+    margin-left: var(--nav-button-size-opposite);
+    top: 0;
+    
+    height: 3px;
+    width: 0%;
+    
+    background-color: var(--dark-gray);
+    transition: all ease-in-out 200ms;
+}
+
+div.main-layout > nav > ul > li > * {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+div.main-layout > nav > ul > li > a {
+    display: block;
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+div.main-layout > nav > ul > li > a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.main-layout > nav > ul > li:hover > a {
+    color: var(--accent-color);
+}
+
+div.main-layout > nav > ul > li:hover > a::before {
+    width: 100%;
 }
 
 div.main-layout > main {
     grid-area: main;
-    background-color: var(--main-color);
+    background-color: var(--background-color);
     padding: 20px;
 }
 
 div.main-layout > aside {
     grid-area: aside;
     background-color: var(--background-color-alt);
-    padding: 10px 10px 10px 20px;
+    /*padding: 10px 10px 10px 20px;*/
+    overflow: auto;
+    width: 0px;
+    /*margin-top: var(--shadow-size-opposite);*/
 }
 
 div.main-layout > footer {
@@ -54,42 +119,65 @@ div.main-layout > footer {
 
 div.main-layout {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 6fr 1fr;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen {
     div.main-layout {
-        grid-template-areas: 
-        "nav nav"
-        "main main"
-        "footer footer";
+        grid-template-columns: auto 3fr;
+        grid-template-rows: 1fr auto 1fr;
         
-        margin: auto 0% auto auto;
+        grid-template-areas:
+            "nav nav"
+            "main aside"
+            "footer footer";
+    }
+    
+    div.main-layout > nav > ul > li.activate-aside {
+        display: block;
     }
     
     div.main-layout > aside {
-        display: none;
+        transition: all 500ms;
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 900px) {
+@media only screen and (max-width: 900px) {
     div.main-layout {
+        grid-template-columns: auto 3fr;
+        grid-template-rows: 1fr auto 1fr;
+        
         grid-template-areas: 
         "nav nav"
         "main aside"
         "footer footer";
-        
-        margin: auto 0% auto 1%;
+    }
+    
+    div.main-layout > nav > ul > li.activate-aside {
+        display: block;
+    }
+    
+    div.main-layout > aside {
+        transition: all 300ms;
     }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 768px) {
     div.main-layout {
+        grid-template-columns: auto 3fr;
+        grid-template-rows: 1fr 1fr auto 1fr;
+        
         grid-template-areas: 
-            "nav nav"
-            "main aside"
-            "footer footer";
-        margin: auto 0% auto 3%;
+        "nav nav"
+        "aside aside"
+        "main main"
+        "footer footer";
+    }
+    
+    div.main-layout > nav > ul > li.activate-aside {
+        display: none;
+    }
+    
+    div.main-layout > aside {
+        transition: all 0ms;
     }
 }
