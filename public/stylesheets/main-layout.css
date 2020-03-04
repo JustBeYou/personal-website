@@ -1,0 +1,221 @@
+:root {
+    --background-color: white;
+    --background-color-alt: #d9d9d9;
+    --light-gray: #e6e6e6;
+    --dark-gray: #5b5b5b;
+    --main-color: #a6a6a6;
+    --accent-color: #1b1b1b;
+    
+    --nav-button-spacing: 1.5em;
+    --nav-button-spacing-opposite: -1.5em;
+    
+    --shadow-radius: 0.2em;
+    --shadow-radius-opposite: -0.2em;
+    --shadow-size: 0.2em;
+    
+    --font-family: serif;
+    --font-size: 20px;
+    --font-size-header: 25px;
+}
+
+body {
+    margin: 0;
+}
+
+div.main-layout {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr;
+        
+    grid-template-areas:
+        "main"
+        "footer";
+    
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    
+    padding-top: calc(var(--font-size-header) * 3);
+}
+
+div.main-layout > header {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    
+    font-size: var(--font-size-header);
+}
+
+div.main-layout div.logo {
+    margin-right: auto;
+    margin-top: 0.2em;
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+}
+
+div.main-layout div.logo > strong {
+    font-size: 2em;
+}
+
+div.main-layout div.search {
+    margin-top: 1.3em;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+div.main-layout div.search > i {
+    font-size: 1.7em;
+}
+
+div.main-layout > header > nav {
+    grid-area: nav;
+
+    display: flex;
+    justify-content: flex-end;
+    
+    /*margin-bottom: var(--shadow-radius);*/
+    background-color: var(--background-color);
+    box-shadow: 0 var(--shadow-size) var(--shadow-radius) rgba(0, 0, 0, .16);
+}
+
+div.main-layout > header > nav > ul {
+    display: flex;
+    
+    margin: 0;
+    padding: 0;
+    
+    list-style: none;
+}
+
+div.main-layout > header > nav > ul > li {
+    display: block;
+    position: relative;
+    padding-left: var(--nav-button-spacing);
+    padding-right: var(--nav-button-spacing);
+}
+
+div.main-layout > header > nav > ul > li:hover {
+    background-color: var(--light-gray);
+}
+
+div.main-layout > header > nav > ul > li::before {
+    content: '';
+    display: block;
+    position: absolute;
+    
+    height: 0.18em;
+    margin-left: var(--nav-button-spacing-opposite);
+    margin-right: var(--nav-button-spacing-opposite);
+    width: 0%;
+    
+    background-color: var(--dark-gray);
+    transition: all ease-in-out 200ms;
+}
+
+div.main-layout > header > nav > ul > li > * {
+    margin-top: 0.9em;
+    margin-bottom: 0.65em;
+}
+
+div.main-layout > header > nav > ul > li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+div.main-layout > header > nav > ul > li i {
+    font-size: 1.6em;
+    margin-bottom: 0.2em;
+}
+
+div.main-layout > header > nav > ul > li label {
+    text-transform: uppercase;
+}
+
+div.main-layout > header > nav > ul > li > a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.main-layout > header > nav > ul > li:hover > a {
+    color: var(--accent-color);
+}
+
+div.main-layout > header > nav > ul > li:hover::before {
+    width: 100%;
+}
+
+div.main-layout > main {
+    z-index: 0;
+    grid-area: main;
+    background-color: var(--background-color);
+    padding: 1.5em;
+}
+
+div.main-layout > aside {
+    z-index: 2;
+    grid-area: aside;
+    background-color: var(--background-color-alt);
+    overflow: auto;
+    width: 0;
+    margin-top: 2.45em;
+    
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 300ms;
+}
+
+div.main-layout > footer {
+    grid-area: footer;
+    background-color: var(--background-color);
+    padding: 0.5em;
+}
+
+@media only screen and (max-width: 900px) {
+    :root {
+        --font-size: 20px;
+        --font-size-header: 25px;
+    }
+    
+    div.main-layout > header {
+        position: fixed;
+    }
+    
+    div.main-layout div.logo {
+        margin-right: 0;
+    }
+    
+    div.main-layout > header > nav {
+        justify-content: space-between;
+    }
+    
+    div.main-layout > header > nav > ul > li label {
+        display: none;
+    }
+    
+    div.main-layout div.search {
+        margin-top: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    :root {
+        --font-size: 20px;
+        --font-size-header: 20px;
+    }
+    
+    div.main-layout div.search {
+        margin-top: 0.8em;
+    }
+}
