@@ -1,0 +1,19 @@
+<nav>
+    <div class="logo">
+        <strong><%= logoText %></strong>
+    </div>
+    <ul>
+        <!--<li class="activate-aside"><i class="fas fa-bars"></i></li>-->
+        <% navButtons.forEach(button => { %>
+        <li>
+            <a href="<%= button.href %>">
+                <i class="<%= button.icon %>"></i>
+                <label><%= button.label %></label>
+            </a>        
+        </li>
+        <% }); %>
+    </ul>
+    <div class="search">
+        <i class="fas fa-search"></i>
+    </div>
+</nav>
