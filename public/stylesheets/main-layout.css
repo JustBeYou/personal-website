@@ -209,7 +209,7 @@ div.main-layout > footer {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
     :root {
         --font-size: 20px;
         --font-size-header: 20px;
@@ -217,5 +217,27 @@ div.main-layout > footer {
     
     div.main-layout div.search {
         margin-top: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    :root {
+        --font-size: 15px;
+        --font-size-header: 15px;
+    }
+    
+    div.main-layout div.search {
+        margin-top: 0.6em;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    :root {
+        --font-size: 12px;
+        --font-size-header: 10px;
+    }
+    
+    div.main-layout div.search {
+        margin-top: 0.4em;
     }
 }
