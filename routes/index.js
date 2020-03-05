@@ -1,19 +1,84 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const Page = require('../models/page.js');
+const {safeResponse} = require('../error.js');
 
-function createNavButton(label, icon, href) {
-    return {label, icon, href};
-}
+router.get('/page/id/:id', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findById(req.params.id);
 
-const navButtons = [
-    createNavButton("Home", "fas fa-home", "#home"),
-    createNavButton("Projects", "fas fa-project-diagram", "#projects"),
-    createNavButton("About", "fas fa-address-card", "#about"),
-];
+        res.json({ page });
+    });
+});
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: "LittleWho", logoText: "Logo", navButtons });
+router.get('/page/:title', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findOne({title: req.params.title});
+
+        res.render(page.renderPath, {
+            title: page.title,
+            logoText: defaultLogoText,
+            navButtons: page.navButtons,
+        });
+    });
+});
+
+router.put('/page', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = new Page(req.body);
+        await page.save();
+
+        res.json({ page });
+    });
+});
+
+router.post('/page/:title', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findOne({
+            title: req.params.title,
+        });
+        Object.assign(page, req.body);
+        await page.save();
+
+        res.json({ page });
+    });
+});
+
+router.delete('/page/:title', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findOne({ 
+            title: req.params.title 
+        });
+        await page.delete();
+
+        res.json({});
+    });
+});
+
+router.put('/page/:title/navButtons', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findOne({
+            title: req.params.title,
+        });
+        page.navButtons.push(req.body);
+        await page.save();
+
+        res.json({ page });
+    });
+});
+
+router.delete('/page/:title/navButtons/:label', async (req, res) => {
+    await safeResponse(res, async () => {
+        const page = await Page.findOne({
+            title: req.params.title,
+        });
+        page.navButtons = page.navButtons.filter((button) => {
+            return button.label !== req.params.label;
+        });
+        await page.save();
+
+        res.json({ page });
+    });
 });
 
 module.exports = router;
