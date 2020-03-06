@@ -1,0 +1,29 @@
+{
+    "pages": [
+        {
+            "title": "index",
+            "navButtons": [
+                {
+                    "label": "Home",
+                    "icon": "fas fa-home",
+                    "href": "#home"
+                },
+                {
+                    "label": "Projects",
+                    "icon": "fas fa-project-diagram",
+                    "href": "#projects"
+                },
+                {
+                    "label": "About",
+                    "icon": "fas fa-address-card",
+                    "href": "#about"
+                }
+            ],
+            "filePath": "default/pages/index.ejs"
+        },
+        {
+            "title": "login",
+            "filePath": "default/pages/signin.ejs"
+        }
+    ]
+}
