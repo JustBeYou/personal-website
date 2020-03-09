@@ -4,6 +4,7 @@ const Page = require('./models/page.js');
 const process = require('process');
 const fs = require('fs');
 const {ncp} = require('ncp');
+const {exec} = require('child_process');
 
 async function install() {
     console.warn("If there is any content in the database it will be deleted!");
@@ -13,6 +14,7 @@ async function install() {
 }
 
 async function copyResources() {
+    await exec('mkdir public/images; mkdir public/javascripts; mkdir public/stylesheets; mkdir views/parts; mkdir views/pages;');
     await ncp('default/resources/images', 'public/images');
     await ncp('default/resources/javascripts', 'public/javascripts');
     await ncp('default/resources/stylesheets', 'public/stylesheets');
