@@ -19,6 +19,7 @@ router.get('/page/:title', async (req, res) => {
             title: page.title,
             logoText: defaultLogoText,
             navButtons: page.navButtons,
+            hasAsideMenu: page.hasAsideMenu,
         });
     });
 });

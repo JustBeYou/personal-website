@@ -24,6 +24,26 @@
         {
             "title": "login",
             "filePath": "default/pages/signin.ejs"
+        },
+        {
+            "title": "dashboard",
+            "filePath": "default/pages/dashboard.ejs",
+            "hasAsideMenu": true
+        },
+        {
+            "title": "pages",
+            "filePath": "default/pages/pages.ejs",
+            "hasAsideMenu": true
+        },
+        {
+            "title": "users",
+            "filePath": "default/pages/users.ejs",
+            "hasAsideMenu": true
+        },
+        {
+            "title": "settings",
+            "filePath": "default/pages/settings.ejs",
+            "hasAsideMenu": true
         }
     ]
 }

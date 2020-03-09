@@ -21,6 +21,11 @@ const pageSchema = new Schema({
         type: Array,
     },
 
+    hasAsideMenu: {
+        type: Boolean,
+        default: false,
+    },
+
     content: {
         type: String,
         require: true,
@@ -47,11 +52,16 @@ function saveEJSFile(page) {
     fs.writeFileSync(page.filePath, page.content, 'utf-8');
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 async function generateCachedHTML(page) {
     const html = await ejs.renderFile(page.filePath, {
-        title: page.title,
+        title: capitalizeFirstLetter(page.title),
         logoText: "logo",
         navButtons: page.navButtons,
+        hasAsideMenu: page.hasAsideMenu,
     });
 
     const cachedPagePath = 'public/' + page.title + '.html';
