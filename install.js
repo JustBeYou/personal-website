@@ -14,7 +14,7 @@ async function install() {
 }
 
 async function copyResources() {
-    await exec('mkdir public/images; mkdir public/javascripts; mkdir public/stylesheets; mkdir views/parts; mkdir views/pages;');
+    await exec('mkdir public; mkdir public/images; mkdir public/javascripts; mkdir public/stylesheets; mkdir views/parts; mkdir views/pages;');
     await ncp('default/resources/images', 'public/images');
     await ncp('default/resources/javascripts', 'public/javascripts');
     await ncp('default/resources/stylesheets', 'public/stylesheets');
