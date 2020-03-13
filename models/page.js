@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const config = require('../config.json');
 
 const pageSchema = new Schema({
     title: {
@@ -42,7 +43,7 @@ pageSchema.post('validate', (page) => {
     }
 
     page.filePath = 'views/pages/' + page.title + '.ejs';
-    page.renderPath = 'cached_pages/' + page.title;
+    page.renderPath = 'pages/' + page.title;
 });
 
 const ejs = require('ejs');
@@ -59,7 +60,7 @@ function capitalizeFirstLetter(string) {
 async function generateCachedHTML(page) {
     const html = await ejs.renderFile(page.filePath, {
         title: capitalizeFirstLetter(page.title),
-        logoText: "logo",
+        logoText: config.logo,
         navButtons: page.navButtons,
         hasAsideMenu: page.hasAsideMenu,
     });

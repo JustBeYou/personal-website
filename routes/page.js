@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Page = require('../models/page.js');
 const {safeResponse} = require('../error.js');
+const config = require('../config.json');
 
 router.get('/page/id/:id', async (req, res) => {
     await safeResponse(res, async () => {
@@ -17,7 +18,7 @@ router.get('/page/:title', async (req, res) => {
 
         res.render(page.renderPath, {
             title: page.title,
-            logoText: defaultLogoText,
+            logoText: config.logo,
             navButtons: page.navButtons,
             hasAsideMenu: page.hasAsideMenu,
         });
