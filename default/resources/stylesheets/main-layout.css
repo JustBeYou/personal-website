@@ -34,6 +34,11 @@ div.main-layout div.logo {
     margin-bottom: 0.2em;
 }
 
+div.main-layout div.logo img {
+    width: 9em;
+    height: 4em;
+}
+
 div.main-layout div.logo > strong {
     font-size: 2em;
 }
