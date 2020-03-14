@@ -1,0 +1,43 @@
+@media only screen and (max-width: 1000px) {
+    div.main-layout > header {
+        position: fixed;
+    }
+    
+    div.main-layout div.logo {
+        margin-right: 0;
+    }
+    
+    div.main-layout > header > nav {
+        justify-content: space-between;
+    }
+    
+    div.main-layout > header > nav > ul > li label {
+        display: none;
+    }
+
+    div.main-layout div.logo img {
+        width: 8em;
+        height: 3.5em;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    div.main-layout div.logo img {
+        width: 7em;
+        height: 3em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    div.main-layout div.logo img {
+        width: 6em;
+        height: 2.5em;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    div.main-layout div.logo img {
+        width: 5em;
+        height: 2em;
+    }
+}

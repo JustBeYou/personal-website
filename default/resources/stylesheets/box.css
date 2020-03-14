@@ -1,14 +1,28 @@
-.box > header {
+.box {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.20);
+    border-color: var(--main-color);
+    background-color: var(--main-color);
+    
+    margin: 3em auto;
+    padding: 1em;
+}
+
+.box > label {
     font-size: 1.5em;
     
     margin-top: 1em;
     margin-bottom: 1.5em;
 }
 
-.box > section {
+.box > div {
 }
 
-.box > section > form {
+.box > div > form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +30,7 @@
     margin: 0 1em;
 }
 
-.box > section > form > * {
+.box > div > form > * {
     font-size: 1em;
     text-align: center;
     
@@ -30,7 +44,7 @@
     margin-bottom: 0.5em;
 }
 
-.box > section > form > button {
+.box > div > form > button {
     width: 50%;
     margin-top: 2em;
 }
