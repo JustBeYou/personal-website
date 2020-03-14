@@ -11,3 +11,5 @@ Personal website project
 ---
 ![](./screenshot/Screenshot_5.png)
 ---
+![](./screenshot/Screenshot_6.png)
+---
