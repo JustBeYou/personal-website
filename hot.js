@@ -1,7 +1,9 @@
 const fs = require('fs');
+const chokidar = require('chokidar');
 const database = require('./database.js');
 const Page = require('./models/page.js');
 const md5 = require('md5');
+const ncp = require('ncp');
 
 async function watchDog() {
     await database();
@@ -13,6 +15,23 @@ async function watchDog() {
         console.log(`Watching file ${path}.`);
         watchFile(page._id, path);
     }
+
+    const resourceWatcher = chokidar.watch('./default/resources',  {ignored: /^\./, persistent: true});
+    resourceWatcher.on('change', copyResource);
+    const partsWatcher = chokidar.watch('./default/parts',  {ignored: /^\./, persistent: true});
+    partsWatcher.on('change', copyPart);
+}
+
+function copyResource(file) {
+    const dest = file.replace('default/resources', 'public');
+    ncp(file, dest);
+    console.log(`Changed ${dest}`);
+}
+
+function copyPart(file) {
+    const dest = file.replace('defalult', 'views');
+    ncp(file, dest);
+    console.log(`Changed ${dest}`);
 }
 
 const fsDelay = 200;
