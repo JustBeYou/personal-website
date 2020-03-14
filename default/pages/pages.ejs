@@ -1,6 +1,21 @@
-<% include ../parts/admin-header %>
+<% include ../parts/admin-editor-header %>
+
+<template id="page-option">
+    <option value="page id">Page name</option>
+</template>
 
 <h1>Pages editor</h1>
-<% include ../parts/lorem-ipsum %>
+
+<div class="pages-editor">
+
+    <div id="editor-menu">
+        <label>Pages:</label>
+        <select id="editor-select">
+        </select>
+        <button id="editor-select-button">Select for editing</button>
+    </div>
+
+    <textarea id="editor-area"></textarea>
+</div>
 
 <% include ../parts/admin-footer %>

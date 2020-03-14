@@ -1,0 +1,13 @@
+div.pages-editor > div#editor-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--dark-gray);
+    color: var(--background-color);
+    border-radius: 0.75em 0.75em 0 0;
+}
+
+div.pages-editor > div#editor-menu > * {
+    margin: 0.5em;
+}

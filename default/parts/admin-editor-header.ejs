@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <% include ../parts/styles %>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/editor.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/codemirror.min.css">
+    </head>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/codemirror.min.js"></script>
+    <script src="/javascripts/editor.js"></script>
+    <body>
+        <div class="main-layout">
+            <header>
+                <% include ../parts/nav %>
+            </header>
+
+            <main>
