@@ -28,22 +28,26 @@
         {
             "title": "dashboard",
             "filePath": "default/pages/dashboard.ejs",
-            "hasAsideMenu": true
+            "hasAsideMenu": true,
+            "admin": true
         },
         {
             "title": "pages",
             "filePath": "default/pages/pages.ejs",
-            "hasAsideMenu": true
+            "hasAsideMenu": true,
+            "admin": true
         },
         {
             "title": "users",
             "filePath": "default/pages/users.ejs",
-            "hasAsideMenu": true
+            "hasAsideMenu": true,
+            "admin": true
         },
         {
             "title": "settings",
             "filePath": "default/pages/settings.ejs",
-            "hasAsideMenu": true
+            "hasAsideMenu": true,
+            "admin": true
         }
     ]
 }
