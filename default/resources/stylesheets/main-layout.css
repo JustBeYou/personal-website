@@ -39,17 +39,13 @@ div.main-layout div.logo img {
     height: 4em;
 }
 
-div.main-layout div.logo > strong {
-    font-size: 2em;
-}
-
 div.main-layout > header > nav {
     grid-area: nav;
 
     display: flex;
     justify-content: flex-end;
 
-    padding: 0 4em;
+    padding: 0 var(--content-sides-padding);
     
     /*margin-bottom: var(--shadow-radius);*/
     background-color: var(--background-color);
@@ -136,7 +132,26 @@ div.main-layout > main {
     grid-area: main;
     
     background-color: var(--background-color);
-    padding: 1.5em;
+}
+
+div.main-layout > main section#home {
+    padding-top: 6em;
+    padding-bottom: 15em;
+}
+
+div.main-layout > main h1 {
+    font-weight: 900;
+    font-size: 2.2em;
+    padding: 0;
+    margin: 0;
+}
+
+div.main-layout > main section {
+    padding: 0 var(--content-sides-padding);
+}
+
+div.main-layout > main section:first-child {
+    padding: 1.5em var(--content-sides-padding);
 }
 
 div.main-layout > main section:nth-child(even) {
@@ -202,5 +217,5 @@ div.main-layout > aside > ul > li > a > i {
 div.main-layout > footer {
     grid-area: footer;
     background-color: var(--background-color);
-    padding: 0.5em;
+    padding: 0.5em var(--content-sides-padding);
 }

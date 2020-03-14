@@ -12,10 +12,12 @@
     --shadow-radius: 0.2em;
     --shadow-radius-opposite: -0.2em;
     --shadow-size: 0.2em;
-    
-    --font-family: serif;
+
+    --font-family: 'Anton', sans-serif;
     --font-size: 1.5vw;
     --font-size-header: 1.25vw;
+
+    --content-sides-padding: 12em;
 }
 
 .flexible {
@@ -26,6 +28,8 @@
     :root {
         --font-size: 2.88vw;
         --font-size-header: 2.4vw;
+
+        --content-sides-padding: 6em;
     }
 }
 
@@ -33,6 +37,7 @@
     :root {
         --font-size: 3.84vw;
         --font-size-header: 3.2vw;
+        --content-sides-padding: 1em;
     }
 }
 
@@ -40,6 +45,7 @@
     :root {
         --font-size: 6vw;
         --font-size-header: 4.5vw;
+        --content-sides-padding: 0.2em;
     }
 }
 
@@ -47,5 +53,6 @@
     :root {
         --font-size: 8vw;
         --font-size-header: 4vw;
+        --content-sides-padding: 0.2em;
     }
 }
