@@ -1,6 +1,54 @@
 <% include ../parts/admin-header %>
 
 <h1>Users management</h1>
-<% include ../parts/lorem-ipsum %>
+<template id="user-row">
+    <tr>
+        <td>1</td>
+        <td>admin</td>
+        <td>admin@example.com</td>
+        <td>Yes</td>
+        <td>
+            <button class="user-delete">Delete</button>
+            <button class="user-rights">Make admin</button>
+        </td>
+    </tr>
+</template>
+
+<template id="create-user-row">
+    <tr id="input-user">
+        <td>...</td>
+        <td>
+            <input id="input-user-name" type="text" placeholder="Name">
+        </td>
+        <td>
+            <input id="input-user-email" type="text" placeholder="Email">
+        </td>
+        <td>
+            <label>Yes</label>
+            <input type="radio" name="is-admin" value="1">
+            <label>No</label>
+            <input type="radio" name="is-admin" value="0">
+            
+        </td>
+        <td>
+            <button class="user-create" onclick="createNewUser();">Create</button>
+        </td>
+    </tr>
+</template>
+
+<table class="users-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Is admin?</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody id="users-table-content">
+    </tbody>
+</table>
 
 <% include ../parts/admin-footer %>
