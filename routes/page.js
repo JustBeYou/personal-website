@@ -3,6 +3,7 @@ const router = express.Router();
 const Page = require('../models/page.js');
 const {safeResponse} = require('../error.js');
 const config = require('../config.json');
+const {adminMiddleware} = require('../auth.js');
 
 router.get('/page/id/:id', async (req, res) => {
     await safeResponse(res, async () => {
@@ -25,7 +26,7 @@ router.get('/page/:title', async (req, res) => {
     });
 });
 
-router.put('/page', async (req, res) => {
+router.put('/page', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = new Page(req.body);
         await page.save();
@@ -34,7 +35,7 @@ router.put('/page', async (req, res) => {
     });
 });
 
-router.post('/page/:title', async (req, res) => {
+router.post('/page/:title', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = await Page.findOne({
             title: req.params.title,
@@ -46,7 +47,7 @@ router.post('/page/:title', async (req, res) => {
     });
 });
 
-router.delete('/page/:title', async (req, res) => {
+router.delete('/page/:title', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = await Page.findOne({ 
             title: req.params.title 
@@ -57,7 +58,7 @@ router.delete('/page/:title', async (req, res) => {
     });
 });
 
-router.put('/page/:title/navButtons', async (req, res) => {
+router.put('/page/:title/navButtons', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = await Page.findOne({
             title: req.params.title,
@@ -69,7 +70,7 @@ router.put('/page/:title/navButtons', async (req, res) => {
     });
 });
 
-router.delete('/page/:title/navButtons/:label', async (req, res) => {
+router.delete('/page/:title/navButtons/:label', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = await Page.findOne({
             title: req.params.title,

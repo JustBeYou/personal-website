@@ -30,6 +30,11 @@ const pageSchema = new Schema({
     content: {
         type: String,
         require: true,
+    },
+
+    admin: {
+        type: Boolean,
+        default: false,
     }
 });
 
@@ -65,7 +70,10 @@ async function generateCachedHTML(page) {
         hasAsideMenu: page.hasAsideMenu,
     });
 
-    const cachedPagePath = 'public/' + page.title + '.html';
+    let cachedPagePath = 'public/' + page.title + '.html';
+    if (page.admin === true) {
+        cachedPagePath = cachedPagePath.replace('public/', 'public/admin/');
+    }
     fs.writeFileSync(cachedPagePath, html, 'utf-8');    
 }
 
