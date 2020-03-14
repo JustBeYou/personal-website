@@ -76,7 +76,7 @@ function authMiddleware(req, res, next) {
 
 function userMiddleware(req, res, next) {
     if (req.user === null) {
-        res.redirect('/login.html');
+        res.redirect('/signin.html');
         return ;
     }
 
@@ -85,7 +85,7 @@ function userMiddleware(req, res, next) {
 
 function adminMiddleware(req, res, next) {
     if (req.user === null) {
-        res.redirect('/login.html');
+        res.redirect('/signin.html');
         return ;
     }
 
