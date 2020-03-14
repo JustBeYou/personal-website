@@ -26,6 +26,14 @@ router.get('/page/:title', async (req, res) => {
     });
 });
 
+router.get('/page', adminMiddleware, async (req, res) => {
+    await safeResponse(res, async () => {
+        const pages = await Page.find({});
+
+        res.json({ pages });
+    });
+});
+
 router.put('/page', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
         const page = new Page(req.body);
@@ -35,11 +43,9 @@ router.put('/page', adminMiddleware, async (req, res) => {
     });
 });
 
-router.post('/page/:title', adminMiddleware, async (req, res) => {
+router.post('/page/id/:id', adminMiddleware, async (req, res) => {
     await safeResponse(res, async () => {
-        const page = await Page.findOne({
-            title: req.params.title,
-        });
+        const page = await Page.findById(req.params.id);
         Object.assign(page, req.body);
         await page.save();
 
