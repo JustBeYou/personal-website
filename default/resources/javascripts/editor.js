@@ -26,8 +26,8 @@ window.addEventListener('load', async () => {
         select.appendChild(newOption);
     }
 
-    const button = document.getElementById('editor-select-button');
-    button.addEventListener('click', loadPageForEdit);
+    loadPageForEdit();
+    select.addEventListener('change', loadPageForEdit);
     
     document.onkeyup = (e) => {
         if(e.keyCode === 17) isCtrl = false;
