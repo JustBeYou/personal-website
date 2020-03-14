@@ -5,10 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const process = require('process');
 
+const auth = require('./auth.js');
 const database = require('./database.js');
 const pageRouter = require('./routes/page.js');
+const userRouter = require('./routes/user.js');
 
 database();
+
 const app = express();
 
 // view engine setup
@@ -19,9 +22,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(auth.authMiddleware);
+app.use(auth.router);
+app.use('/admin', auth.adminMiddleware);
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use('/', pageRouter);
+app.use('/', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
