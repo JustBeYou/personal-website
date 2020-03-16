@@ -44,6 +44,7 @@ async function copyResources() {
     await ncp('default/resources/javascripts', 'public/javascripts');
     await ncp('default/resources/stylesheets', 'public/stylesheets');
     await ncp('default/parts', 'views/parts');
+    await new Promise(r => setTimeout(r, 1500));
 }
 
 async function installWebpages() {
