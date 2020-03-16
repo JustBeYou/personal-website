@@ -256,6 +256,7 @@ div.main-layout > main.landing section#about {
 
 div.main-layout > main.landing div.social {
     position: fixed;
+    z-index: 6;
     top: 8em;
     right: 5px;
 
@@ -266,6 +267,13 @@ div.main-layout > main.landing div.social {
 
 div.main-layout > main.landing div.social i {
     font-size: 3em;
+    color: var(--dark-gray);
+    transition: transform 500ms ease;
+}
+
+div.main-layout > main.landing div.social i:hover {
+    color: var(--accent-color);
+    transform: translateX(-1em) scale(1.3);
 }
 
 div.main-layout > main section {
