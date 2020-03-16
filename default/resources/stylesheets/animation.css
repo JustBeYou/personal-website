@@ -1,0 +1,47 @@
+div.landing-animation svg {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: circles 8s ease-out infinite;
+    margin-left: 5em;
+}
+
+div.landing-animation svg#circle1 {
+    animation-delay: 0s;
+}
+
+div.landing-animation svg#circle2 {
+    animation-delay: 0.5s;
+}
+
+div.landing-animation svg#circle3 {
+    animation-delay: 1s;
+}
+
+div.landing-animation svg#circle4 {
+    animation-delay: 1.5s;
+}
+
+div.landing-animation svg#circle5 {
+    animation-delay: 2s;
+}
+
+div.landing-animation svg#circle6 {
+    animation-delay: 2.5s;
+}
+
+div.landing-animation svg#circle7 {
+    animation-delay: 3s;
+}
+
+
+
+div.landing-animation svg circle {
+    fill: rgba(120, 120, 120, 0.24); 
+    }
+
+@keyframes circles {
+    0% {transform: translateY(0em) scale(1); }
+    50% {transform: translateY(15em) scale(1.5);}
+    100%  {transform: translateY(0em) scale(1);}
+}
