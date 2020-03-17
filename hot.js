@@ -31,7 +31,7 @@ function copyResource(file) {
 }
 
 function copyPart(file) {
-    const dest = file.replace('defalult', 'views');
+    const dest = file.replace('default', 'views');
     ncp(file, dest);
     console.log(`Changed ${dest}`);
 }
