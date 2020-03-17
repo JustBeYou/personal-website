@@ -17,9 +17,11 @@ async function watchDog() {
     }
 
     const resourceWatcher = chokidar.watch('./default/resources',  {ignored: /^\./, persistent: true});
+    resourceWatcher.on('add', copyResource);
     resourceWatcher.on('change', copyResource);
     const partsWatcher = chokidar.watch('./default/parts',  {ignored: /^\./, persistent: true});
     partsWatcher.on('change', copyPart);
+    partsWatcher.on('add', copyPart);
 }
 
 function copyResource(file) {

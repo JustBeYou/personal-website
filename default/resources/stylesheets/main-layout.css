@@ -149,7 +149,7 @@ div.main-layout > main.landing section#home {
 
 div.main-layout > main.landing section#projects {
     position: relative;
-    height: 55em; /* number of projects * one element height + error */
+    height: 120em; /* number of projects * one element height + error */
 }
 
 div.main-layout > main.landing section#projects div.showcase {
@@ -158,9 +158,17 @@ div.main-layout > main.landing section#projects div.showcase {
     flex-wrap: wrap;
 
     position: absolute;
-    top: -3em;
     width: 44em;
 }
+
+div.main-layout > main.landing section#projects div#showcase-1 {
+    top: -3em;
+}
+
+div.main-layout > main.landing section#projects div#showcase-2 {
+    top: 55em;
+}
+
 
 div.main-layout > main.landing section#projects div.showcase figure {
     position: relative;
@@ -210,6 +218,8 @@ div.main-layout > main.landing section#projects div.showcase figure label {
     position: absolute;
     bottom: 0;
 
+    box-sizing: border-box;
+    width: 100%;
     background-color: var(--light-gray-transparent);
     border-radius: 0 0 0.6em 0.6em;
     padding: 0.5em;
