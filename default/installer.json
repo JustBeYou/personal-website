@@ -2,6 +2,9 @@
     "pages": [
         {
             "title": "index",
+            "description": "Writing poems for computers... You may call it software engineering",
+            "keywords": "software,engineer,programming,coding,developer,fullstack,nodejs,python,architecture,html,css,react,api,backend,frontend",
+            "author": "Mihail Feraru",
             "navButtons": [
                 {
                     "label": "Home",
@@ -23,28 +26,43 @@
         },
         {
             "title": "signin",
+            "description": "Login webpage",
+            "keywords": "login,signin,auth",
+            "author": "Mihail Feraru",
             "filePath": "default/pages/signin.ejs"
         },
         {
             "title": "dashboard",
+            "description": "Statistics and general information about the website",
+            "keywords": "dashboard,statistics,settings,admin",
+            "author": "Mihail Feraru",
             "filePath": "default/pages/dashboard.ejs",
             "hasAsideMenu": true,
             "admin": true
         },
         {
             "title": "pages",
+            "description": "Pages editor interface",
+            "keywords": "page,editor,cms",
+            "author": "Mihail Feraru",
             "filePath": "default/pages/pages.ejs",
             "hasAsideMenu": true,
             "admin": true
         },
         {
             "title": "users",
+            "description": "Users management panel",
+            "keywords": "user,manage",
+            "author": "Mihail Feraru",
             "filePath": "default/pages/users.ejs",
             "hasAsideMenu": true,
             "admin": true
         },
         {
             "title": "settings",
+            "description": "General settings",
+            "keywords": "settings,configuration",
+            "author": "Mihail Feraru",
             "filePath": "default/pages/settings.ejs",
             "hasAsideMenu": true,
             "admin": true

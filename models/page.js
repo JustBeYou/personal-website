@@ -8,6 +8,21 @@ const pageSchema = new Schema({
         required: true,
     },
 
+    description: {
+        type: String,
+        required: true,
+    },
+
+    keywords: {
+        type: String,
+        required: true,
+    },
+
+    author: {
+        type: String,
+        required: true,
+    },
+
     filePath: {
         type: String,
         unique: true,
@@ -68,6 +83,9 @@ async function generateCachedHTML(page) {
         logoText: config.logo,
         navButtons: page.navButtons,
         hasAsideMenu: page.hasAsideMenu,
+        description: page.description,
+        keywords: page.keywords,
+        author: page.author,
     });
 
     let cachedPagePath = 'public/' + page.title + '.html';
