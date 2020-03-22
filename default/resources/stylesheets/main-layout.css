@@ -111,7 +111,7 @@ div.main-layout > header > nav > ul > li i {
     margin-bottom: 0.2em;
 }
 
-div.main-layout > header > nav > ul > li label {
+div.main-layout > header > nav > ul > li div {
     text-transform: uppercase;
 }
 
@@ -188,6 +188,8 @@ div.main-layout > main.landing section#projects div.showcase figure {
 
 div.main-layout > main.landing section#projects div.showcase figure img {
     border-radius: 0.6em;
+    width: 100%;
+    height: 100%;
 }
 
 div.main-layout > main.landing section#projects div.showcase figure:hover {
