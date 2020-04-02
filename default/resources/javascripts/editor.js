@@ -1,6 +1,7 @@
 let editor = null;
 let currentPageId = null;
 let isCtrl = false;
+const pagesStore = [];
 
 window.addEventListener('load', async () => {
     const textArea = document.getElementById('editor-area');
@@ -23,6 +24,7 @@ window.addEventListener('load', async () => {
         innerOption.value = page._id;
         innerOption.textContent = page.title;
 
+        pagesStore.push(page.title);
         select.appendChild(newOption);
     }
 
@@ -40,7 +42,22 @@ window.addEventListener('load', async () => {
             return false;
         }
     }
+
+    pageURLChanged();
 });
+
+function pageURLChanged() {
+    if (pagesStore.length === 0) return ;
+    const windowUrl = window.location.hash;
+    if (windowUrl.indexOf('#') !== -1) {
+        const pageTitle = windowUrl.split('#')[1];
+        const pagesSelect = document.getElementById('editor-select');
+        pagesSelect.selectedIndex = pagesStore.indexOf(pageTitle);
+        loadPageForEdit();
+    }
+}
+
+window.addEventListener('hashchange', pageURLChanged);
 
 async function loadPageForEdit() {
     const pagesSelect = document.getElementById('editor-select');
