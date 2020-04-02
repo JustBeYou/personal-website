@@ -1,3 +1,9 @@
+@media only screen and (min-width: 1000px) {
+    div.main-layout > main.landing section#projects div.showcase {
+        width: 70vw;
+    }
+}
+
 @media only screen and (max-width: 1000px) {
     div.main-layout > header {
         position: fixed;
@@ -19,6 +25,27 @@
         width: 8em;
         height: 3.5em;
     }
+    
+    
+    div.landing-animation {
+        display: none;
+    }
+
+    div.main-layout > main.landing section#projects {
+        height: 175em; /* number of projects * one element height + error */
+    }
+    div.main-layout > main.landing section#home {
+        padding-top: 4em;
+        padding-bottom: 8em;
+    }
+
+    div.main-layout > main.landing section#projects div#showcase-2 {
+        top: 77em;
+    }
+
+    div.main-layout > main.landing div.social i {
+        font-size: 2.5em;
+     }
 }
 
 @media only screen and (max-width: 750px) {
@@ -26,12 +53,49 @@
         width: 7em;
         height: 3em;
     }
+
+    div.main-layout > main.landing section#home {
+        padding-top: 3em;
+        padding-bottom: 6em;
+    }
+
+    div.main-layout > main.landing section#projects {
+        height: 316em; /* number of projects * one element height + error */
+        padding-left: 2em;
+    }
+
+    div.main-layout > main.landing section#home {
+        padding-top: 4em;
+        padding-bottom: 8em;
+    }
+
+    div.main-layout > main.landing section#projects div#showcase-2 {
+        top: 144em;
+    }
+
+    div.main-layout > main.landing div.social i {
+        font-size: 1.5em;
+    }
+
+    div.main-layout > main.landing section#projects {
+        padding-left: 0.8em;
+    }
 }
 
 @media only screen and (max-width: 480px) {
     div.main-layout div.logo img {
+        display: none;
         width: 6em;
         height: 2.5em;
+    }
+
+    div.main-layout > main.landing section#home {
+        padding-top: 3em;
+        padding-bottom: 6em;
+    }
+
+    div.main-layout > main.landing div.social i {
+        font-size: 1em;
     }
 }
 
@@ -39,5 +103,10 @@
     div.main-layout div.logo img {
         width: 5em;
         height: 2em;
+    }
+
+    div.main-layout > main.landing section#home {
+        padding-top: 3em;
+        padding-bottom: 6em;
     }
 }

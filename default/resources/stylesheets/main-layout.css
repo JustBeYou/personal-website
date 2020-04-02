@@ -156,9 +156,17 @@ div.main-layout > main.landing section#projects div.showcase {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 
     position: absolute;
-    width: 44em;
+    width: 90vw;
+}
+
+div.main-layout > main.landing section#projects div.showcase div.text {
+    width: 95%;
+    flex-basis: 95%;
+    margin-top: -3em;
+    margin-right: 0.6em;
 }
 
 div.main-layout > main.landing section#projects div#showcase-1 {
@@ -256,7 +264,7 @@ div.main-layout > main.landing h3 {
 div.main-layout > main.landing p {
     margin: 0;
     margin-top: 0.5em;
-    width: 60%;
+    width: 90%;
     color: gray; /* TODO: variable this */
 }
 
