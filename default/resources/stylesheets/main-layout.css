@@ -329,28 +329,29 @@ div.main-layout > aside {
     box-shadow: -4px 0px 10px 0px rgba(0,0,0,0.4);
 }
 
-div.main-layout > aside > ul {
+div.main-layout > aside ul {
     margin-top: 0;
     padding-left: 0;
     list-style-type: none;
 }
 
-div.main-layout > aside > ul > li {
+div.main-layout > aside ul > li {
+    background-color: var(--background-color-alt);
     position: relative;
     padding: 1em;
     margin-bottom: 0.5em;
 }
 
-div.main-layout > aside > ul > li:hover {
+div.main-layout > aside ul > li:hover {
     background-color: var(--background-color);
 }
 
-div.main-layout > aside > ul > li > a {
+div.main-layout > aside ul > li > a {
     text-decoration: none;
     color: var(--dark-gray);
 }
 
-div.main-layout > aside > ul > li > a::before {
+div.main-layout > aside ul > li > a::before {
     content: '';
     position: absolute;
     top: 0;
@@ -359,9 +360,18 @@ div.main-layout > aside > ul > li > a::before {
     height: 100%;
 }
 
-div.main-layout > aside > ul > li > a > i {
+div.main-layout > aside ul > li > a > i {
     margin-right: 0.75em;
     width: 1.5em;
+}
+
+.dropdown#dropdown1:hover .dropdown-content#dropdown-content1 {
+    display: block;
+}
+
+.dropdown-content {
+    position: relative;
+    display: none;
 }
 
 div.main-layout > footer {
