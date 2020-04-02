@@ -38,7 +38,7 @@
             "author": "Mihail Feraru",
             "filePath": "default/pages/dashboard.ejs",
             "hasAsideMenu": true,
-            "admin": true
+            "admin": false
         },
         {
             "title": "pages",
@@ -47,7 +47,7 @@
             "author": "Mihail Feraru",
             "filePath": "default/pages/pages.ejs",
             "hasAsideMenu": true,
-            "admin": true
+            "admin": false
         },
         {
             "title": "users",
@@ -56,7 +56,7 @@
             "author": "Mihail Feraru",
             "filePath": "default/pages/users.ejs",
             "hasAsideMenu": true,
-            "admin": true
+            "admin": false
         },
         {
             "title": "settings",
@@ -65,7 +65,7 @@
             "author": "Mihail Feraru",
             "filePath": "default/pages/settings.ejs",
             "hasAsideMenu": true,
-            "admin": true
+            "admin": false
         }
     ]
 }
