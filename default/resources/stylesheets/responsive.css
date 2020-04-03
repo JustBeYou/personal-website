@@ -45,7 +45,7 @@
 
     div.main-layout > main.landing div.social i {
         font-size: 2.5em;
-     }
+    }
 }
 
 @media only screen and (max-width: 750px) {
@@ -80,6 +80,14 @@
     div.main-layout > main.landing section#projects {
         padding-left: 0.8em;
     }
+
+    div.pages-editor {
+        display: none;
+    }
+    
+    div.pages-editor-cant-show {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -97,6 +105,14 @@
     div.main-layout > main.landing div.social i {
         font-size: 1em;
     }
+
+    div.pages-editor {
+        display: none;
+    }
+    
+    div.pages-editor-cant-show {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -108,5 +124,13 @@
     div.main-layout > main.landing section#home {
         padding-top: 3em;
         padding-bottom: 6em;
+    }
+
+    div.pages-editor {
+        display: none;
+    }
+    
+    div.pages-editor-cant-show {
+        display: block;
     }
 }

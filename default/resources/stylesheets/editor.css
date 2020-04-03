@@ -1,3 +1,11 @@
+div.pages-editor {
+    width: 70vw;
+}
+
+div.pages-editor-cant-show {
+    display: none;
+}
+
 div.pages-editor > div#editor-menu {
     display: flex;
     flex-direction: row;
