@@ -2,6 +2,7 @@
     "pages": [
         {
             "title": "index",
+            "displayTitle": "Software engineering portofolio",
             "description": "Writing poems for computers... You may call it software engineering",
             "keywords": "software,engineer,programming,coding,developer,fullstack,nodejs,python,architecture,html,css,react,api,backend,frontend",
             "author": "Mihail Feraru",
@@ -22,10 +23,12 @@
                     "href": "#about"
                 }
             ],
-            "filePath": "default/pages/index.ejs"
+            "filePath": "default/pages/index.ejs",
+            "deps": ["project"]
         },
         {
             "title": "signin",
+            "displayTitle": "Sign In",
             "description": "Login webpage",
             "keywords": "login,signin,auth",
             "author": "Mihail Feraru",
@@ -33,6 +36,7 @@
         },
         {
             "title": "dashboard",
+            "displayTitle": "Admin Dashboard",
             "description": "Statistics and general information about the website",
             "keywords": "dashboard,statistics,settings,admin",
             "author": "Mihail Feraru",
@@ -42,6 +46,7 @@
         },
         {
             "title": "pages",
+            "displayTitle": "Pages Editor",
             "description": "Pages editor interface",
             "keywords": "page,editor,cms",
             "author": "Mihail Feraru",
@@ -51,6 +56,7 @@
         },
         {
             "title": "users",
+            "displayTitle": "Users manager",
             "description": "Users management panel",
             "keywords": "user,manage",
             "author": "Mihail Feraru",
@@ -60,6 +66,7 @@
         },
         {
             "title": "settings",
+            "displayTitle": "Settings Editor",
             "description": "General settings",
             "keywords": "settings,configuration",
             "author": "Mihail Feraru",
@@ -67,5 +74,104 @@
             "hasAsideMenu": true,
             "admin": true
         }
+    ],
+    "projects": [
+        {
+            "title": "PhotonOS",
+            "image": "/images/photonos.png",
+            "label": "A home-made operating system.",
+            "highlight": true
+        },
+        {
+            "title": "SureBet Manager",
+            "image": "/images/betmanager.png",
+            "label": "Automated betting with 100% chance of winning.",
+            "highlight": true
+        },
+        {
+            "title": "Wellcode",
+            "image": "/images/wellcode.png",
+            "label": "Educational platform for learning programming.",
+            "highlight": true,
+            "ribbon": "Contributor"
+        },
+        {
+            "title": "Forever Family",
+            "image": "/images/foreverfamily.jpeg",
+            "label": "Alzheimer's patients caring appliaction.",
+            "highlight": true,
+            "ribbon": "Hackathon"
+        },
+        {
+            "title": "Productivity Bot",
+            "image": "/images/productivitybot.png",
+            "label": "A messenger bot that watches you on social media and reminds you to get back to work!",
+            "highlight": true
+        },
+        {
+            "title": "EasyBiro",
+            "image": "/images/easybiro.jpg",
+            "label": "Easing bureaucracy.",
+            "highlight": true,
+            "ribbon": "Hackathon"
+        },
+        {
+            "title": "Firebase functions loader",
+            "image": "",
+            "label": "Organizing your cloud functions have never been easier.",
+            "highlight": false
+        },
+        {
+            "title": "TrafficDB",
+            "image": "",
+            "label": "Statistics based on tcpdump output.",
+            "highlight": false
+        },
+        {
+            "title": "Parallel unit testing",
+            "image": "",
+            "label": "Proof of concept of how unit tests could be represended as a directed graph and ran on multiple threads.",
+            "highlight": false
+        },
+        {
+            "title": "Generic card game library",
+            "image": "/images/cardgame.png",
+            "label": "Template library for implementing any card game.",
+            "highlight": false
+        },
+        {
+            "title": "Distributed merge sort",
+            "image": "",
+            "label": "Measuring performance of distributed merge sort vs classical version.",
+            "highlight": false
+        },
+        {
+            "title": "Decentralized voting",
+            "image": "",
+            "label": "Voting mechanism based on blockchain.",
+            "highlight": false
+        },
+        {
+            "title": "C Exceptions",
+            "image": "/images/trycatch.png",
+            "label": "Try-Catch mechanism implemented in pure C.",
+            "highlight": false
+        },
+        {
+            "title": "CruceGame",
+            "image": "/images/crucegame.png",
+            "label": "Educational open-source project, looks like a card game, but the target was teching newcomers programming in teams.",
+            "highlight": false,
+            "ribbon": "Contributor"
+        },
+        {
+            "title": "AsyncHTTP",
+            "image": "/images/asynchttp.png",
+            "label": "Asynchronous HTTP server.",
+            "highlight": false
+        }
+    ],
+    "timeline": [
+
     ]
 }
