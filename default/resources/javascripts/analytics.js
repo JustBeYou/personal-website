@@ -7,9 +7,11 @@
 
 window.addEventListener('load', async () => {
     await generateSessionId();
-    logger({type: 'load', message: `User ${session} arrived`});
-
     addLinksHandlers();
+    registerSections();
+
+    logger({type: 'load', message: `User ${session} arrived`});
+    window.dispatchEvent(new Event('scroll'));
 });
 
 function addLinksHandlers() {
@@ -22,33 +24,59 @@ function addLinksHandlers() {
         });
 }
 
-let scrollTicking = false;
-let lastScrollPosition = 0;
+const watchedSections = [];
+function registerSections() {
+    watchedSections.push(...document.querySelectorAll('section'));
+}
+
 window.addEventListener('scroll', () => {
-    lastScrollPosition = window.scrollY;
-
-    if (!scrollTicking) {
-        setTimeout(() => {
-            const metrics = {...getGenericMetrics()};
-            logger({type: 'scroll', message: `Scrolling to ${metrics.scroll}`});
-            scrollTicking = false;
-        }, 300);
-
-        scrollTicking = true;
-    }
+    handleOnlyEventEnd('scroll', () =>{
+        const metrics = getGenericMetrics();
+        logger({type: 'scroll', message: `Scrolled to ${metrics.scroll}`});
+        const activeSections = getActiveSections();
+        logger({type: 'reading', message: `User is reading ${activeSections.map(elem => `#${elem.id}`)}`});
+    });
 });
 
 window.addEventListener('resize', () => {
-    const metrics = {...getGenericMetrics()};
-    logger({type: 'resize', message: `Window resize to ${metrics.width}:${metrics.height}`});
+    handleOnlyEventEnd('resize', () => {
+        const metrics = getGenericMetrics();
+        logger({type: 'resize', message: `Window resize to ${metrics.width}:${metrics.height}`});
+    });
 });
+
+function getActiveSections() {
+    return watchedSections.filter(section => isInViewport(section));
+}
+
+const timers = {
+    resize: null,
+    scroll: null,
+};
+function handleOnlyEventEnd(timerName, callback) {
+    if (timers[timerName] !== null) {
+        clearTimeout(timers[timerName]);
+        timers[timerName] = null;
+    }
+    timers[timerName] = setTimeout(callback, DEFAULT_EVENT_TIMEOUT);
+}
 
 window.addEventListener('unload', () => {
     logger({type: 'unload', message: `User ${session} left`});
 });
 
+function isInViewport(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const limit = window.innerHeight || document.documentElement.clientHeight;
+    return (
+        (bounding.top >= 0 && bounding.top <= limit) ||
+        (bounding.top < 0 && bounding.bottom > 0)
+    );
+};
+
 function getSystemInfo() {
     return {
+        url: window.location.href,
         browser: navigator.appName,
         platform: navigator.platform,
         location: navigator.geolocation,
@@ -92,7 +120,7 @@ function getGenericMetrics() {
     return {
         height: window.innerHeight,
         width: window.innerWidth,
-        scroll: lastScrollPosition,
+        scroll: window.scrollY,
     };
 }
 
@@ -101,3 +129,5 @@ function logger(data) {
 
     console.log(`[EVENT] ${now} [${data.type}] - ${data.message}`);
 }
+
+const DEFAULT_EVENT_TIMEOUT = 200;
