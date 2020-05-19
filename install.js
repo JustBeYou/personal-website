@@ -1,6 +1,7 @@
 const installerConfig = require('./default/installer.json');
 const database = require('./database.js');
 const Page = require('./models/page.js');
+const Project = require('./models/project.js');
 const User = require('./models/user.js');
 const process = require('process');
 const fs = require('fs');
@@ -50,7 +51,13 @@ async function copyResources() {
 async function installWebpages() {
     console.log("Installing default web pages...");
     await Page.remove({});
-    
+    await Project.remove({});
+
+    for (const project of installerConfig.projects) {
+        const newProject = new Project(project);
+        await newProject.save();
+    }
+
     for (const page of installerConfig.pages) {
         const content = fs.readFileSync(page.filePath, 'utf-8');
         delete page.filePath;
