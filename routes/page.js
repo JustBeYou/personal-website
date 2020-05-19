@@ -17,14 +17,22 @@ router.get('/page/:title', async (req, res) => {
     await safeResponse(res, async () => {
         const page = await Page.findOne({title: req.params.title});
 
+        const deps = {};
+        for (const dep of page.deps) {
+            const depModel = require(`./${dep}.js`);
+            const all = await depModel.find({});
+            deps[dep] = all;
+        }
+
         res.render(page.renderPath, {
-            title: page.title,
+            title: page.displayTitle,
             logoText: config.logo,
             navButtons: page.navButtons,
             hasAsideMenu: page.hasAsideMenu,
             description: page.description,
             keywords: page.keywords,
             author: page.author,
+            ...deps,
         });
     });
 });

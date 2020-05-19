@@ -8,6 +8,11 @@ const pageSchema = new Schema({
         required: true,
     },
 
+    displayTitle: {
+        type: String,
+        required: true,
+    },
+
     description: {
         type: String,
         required: true,
@@ -50,6 +55,11 @@ const pageSchema = new Schema({
     admin: {
         type: Boolean,
         default: false,
+    },
+
+    deps: {
+        type: Array,
+        default: [],
     }
 });
 
@@ -78,14 +88,22 @@ function capitalizeFirstLetter(string) {
 }
 
 async function generateCachedHTML(page) {
+    const deps = {};
+    for (const dep of page.deps) {
+        const depModel = require(`./${dep}.js`);
+        const all = await depModel.find({});
+        deps[dep] = all;
+    }
+
     const html = await ejs.renderFile(page.filePath, {
-        title: capitalizeFirstLetter(page.title),
+        title: page.displayTitle,
         logoText: config.logo,
         navButtons: page.navButtons,
         hasAsideMenu: page.hasAsideMenu,
         description: page.description,
         keywords: page.keywords,
         author: page.author,
+        ...deps,
     });
 
     let cachedPagePath = 'public/' + page.title + '.html';
