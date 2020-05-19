@@ -26,7 +26,11 @@
         height: 3.5em;
     }
     
-    
+    div.main-layout > main.landing section#home div#headline {
+        width: 100%;
+        padding-left: 1em;
+    }
+
     div.landing-animation {
         display: none;
     }

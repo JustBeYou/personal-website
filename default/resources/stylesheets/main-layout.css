@@ -22,6 +22,19 @@ div.main-layout div.flex-column {
     flex-direction: column;
 }
 
+div.main-layout a.link {
+    color: var(--dark-gray);
+    text-decoration: none;
+}
+
+div.main-layout a.link:visited {
+    color: var(--dark-gray);
+}
+
+div.main-layout a.link:hover {
+    font-weight: 900;
+}
+
 div.main-layout > header {
     display: block;
     position: fixed;
@@ -145,6 +158,25 @@ div.main-layout > main.landing section#home {
 
     padding-top: 6em;
     padding-bottom: 15em;
+}
+
+div.main-layout > main.landing section#home div#headline {
+    width: 75%;
+    padding-left: 2.5em;
+}
+
+div.main-layout > main.landing section#home p {
+    font-size: 0.7em;
+    display: inline-block;
+}
+
+div.main-layout > main.landing section#home p#first-line {
+    font-weight: 800;
+}
+
+div.main-layout > main.landing section#home p#second-line {
+    font-weight: 500;
+    font-size: 0.6em;
 }
 
 div.main-layout > main.landing section#projects {
@@ -286,14 +318,32 @@ div.main-layout > main.landing div.social {
 }
 
 div.main-layout > main.landing div.social i {
-    font-size: 3em;
     color: var(--dark-gray);
+    font-size: 3em;
+    padding-right: 0;
     transition: transform 500ms ease;
 }
 
+div.main-layout > main.landing div.social i.fa-linkedin {
+    color: rgb(0, 119, 181);
+}
+
+div.main-layout > main.landing div.social i.fa-github-square {
+    color: rgb(141, 141, 141);
+}
+
+div.main-layout > main.landing div.social i.fa-google-plus-square {
+    color: rgb(220, 82, 70);
+}
+
+div.main-layout > main.landing div.social i.fa-facebook-square {
+    color: rgb(66, 103, 178);
+}
+
 div.main-layout > main.landing div.social i:hover {
-    color: var(--accent-color);
-    transform: translateX(-1em) scale(1.3);
+    filter: brightness(80%);
+    padding-right: 0.2em;
+    transform: scale(1.3);
 }
 
 div.main-layout > main section {

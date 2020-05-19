@@ -3,7 +3,7 @@ div.landing-animation svg {
     width: 100px;
     height: 100px;
     animation: circles 8s ease-out infinite;
-    margin-left: 5em;
+    margin-left: 3em;
 }
 
 div.landing-animation svg#circle1 {

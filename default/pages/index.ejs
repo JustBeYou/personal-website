@@ -5,6 +5,7 @@
         
         <% include ../parts/meta %>
         <% include ../parts/styles %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     </head>
     
     <body>
@@ -15,116 +16,51 @@
 
             <main class="landing">
                 <section id="home">
-                    <div class="flex-column">
-                    <h1>This is a FANCY and</h1>
-                    <h1>CATCHY headline and you</h1>
-                    <h1>won't forget IT</h1>
+                    <div id="headline" class="flex-column">
+                    <p id="first-line">Hello, I am Mihail Feraru.</p>
+                    <p id="second-line">@littlewho @JustBeYou</p>
+                    <p>I love writing poems for computers, you may call it software engineering.</p>
+                    <p>I'm doing fullstack development using technologies at your choice, turning any idea into palpable software 
+                      with clean, efficient and cost effective architecture.</p>
+                    <p>Feel free to explore my experience and showcased projects below.</p>
+                    <p>For job offers, contract projects, mentoring sessions or even if you want to <b>drink a beer</b> 
+                      with me leave a message at <a class="link" href="mailto:mihailferaru2000@gmail.com">mihailferaru2000@gmail.com</a></p>
                     </div>
                     <% include ../parts/landing-animation %> 
                 </section>
                 <section id="projects">
                     <div class="showcase" id="showcase-1">
+                        <% project.filter(projectElem => projectElem.highlight).forEach(projectElem => { %>
                         <figure>
-                            <figcaption>PhotonOS</figcaption>
-                            <img src="/images/photonos.png" alt="PhotonOS">
-                            <label>A home-made operating system.</label>
+                            <% if (projectElem.ribbon !== undefined) { %>
+                              <a class="github-fork-ribbon" data-ribbon="<%= projectElem.ribbon %>" title="<%= projectElem.ribbon %>"><%= projectElem.ribbon %></a>
+                            <% } %>
+                            <figcaption><%= projectElem.title %></figcaption>
+                            <img src="<%= projectElem.image %>" alt="<%= projectElem.title %>">
+                            <label><%= projectElem.label %></label>
                         </figure>
-
-                        <figure>
-                          <figcaption>SureBet Manager</figcaption>
-                          <img src="/images/betmanager.png" alt="BetManager">
-                          <label>Automated betting with 100% chance of winning.</label>
-                        </figure>
-
-                        <figure class="contributor">
-                          <figcaption>Wellcode</figcaption>
-                          <img src="/images/wellcode.png" alt="Wellcode">
-                          <label>Educational platform for learning programming.</label>
-                        </figure>
-
-                        <figure class="hackathon">
-                          <figcaption>ForeverFamily</figcaption>
-                          <img src="/images/foreverfamily.jpeg" alt="ForeverFamily">
-                          <label>Alzheimer's patients caring appliaction.</label>
-                        </figure>
-
-                        <figure>
-                          <figcaption>ProductivityBot</figcaption>
-                          <img src="/images/productivitybot.png" alt="ProductivityBot">
-                          <label>A messenger bot that watches you on social media and reminds you to get back to work!</label>
-                        </figure>
-                        
-                        
-                        <figure class="hackathon">
-                          <figcaption>EasyBiro</figcaption>
-                          <img src="/images/easybiro.jpg" alt="EasyBiro">
-                          <label>Easing bureaucracy.</label>
-                        </figure>
+                        <% }); %>
                         
                         <div class="text">
-                          <h2>Another TEXT that tells something</h2>
-                          <h3>A short brief of nothing important</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                              Sed elementum diam congue felis ornare, sit amet dignissim ipsum elementum. 
-                              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                          <h2>Coding laboratory</h2>
+                          <h3>Building apps for fun 'cause why not</h3>
+                          <p>Besides professional and business projects I also build apps and tools just for the fun of it. 
+                             The learning experience is priceless and sometimes you also end up with someting useful and cool.
                           </p>
                         </div>
                     </div>
 
                     <div class="showcase" id="showcase-2">
-                      <figure>
-                        <figcaption>Firebase functions loader</figcaption>
-                        <img src="/images/"  alt="Firebase functions loader">
-                        <label>Organizing your cloud functions have never been easier.</label>
-                      </figure>
-
-                      <figure>
-                        <figcaption>TrafficDB</figcaption>
-                        <img src="/images/" alt="TrafficDB">
-                        <label>Statistics based on tcpdump output.</label>
-                      </figure>
-
-                      <figure>
-                        <figcaption>Parallel unit testing</figcaption>
-                        <img src="/images/"  alt="Parallel unit testing">
-                        <label>Proof of concept of how unit tests could be represended as a directed graph and ran on multiple threads.</label>
-                      </figure>
-
-                      <figure>
-                        <figcaption>Generic card game library</figcaption>
-                        <img src="/images/cardgame.png"  alt="Generic card game library">
-                        <label>Template library for implementing any card game.</label>
-                      </figure>
-
-                      <figure>
-                        <figcaption>Distributed merge sort</figcaption>
-                        <img src="/images/"  alt="Distributed merge sort">
-                        <label>Measuring performance of distributed merge sort vs classical version.</label>
-                      </figure>
-
-                      <figure>
-                        <figcaption>Decentralized voting</figcaption>
-                        <img src="/images/" alt="Decentralized voting">
-                        <label>Voting mechanism based on blockchain.</label>
-                      </figure>
-
-                      <figure>
-                          <figcaption>C Exceptions</figcaption>
-                          <img src="/images/trycatch.png" alt="C Exceptions">
-                          <label>Try-Catch mechanism implemented in pure C.</label>
-                      </figure>
-
-                      <figure class="contributor">
-                        <figcaption>CruceGame</figcaption>
-                        <img src="/images/crucegame.png"  alt="Cruce Game">
-                        <label>Educational open-source project, looks like a card game, but the target was teching newcomers programming in teams.</label>
-                    </figure>
-
-                      <figure>
-                          <figcaption>AsyncHTTP</figcaption>
-                          <img src="/images/asynchttp.png" alt="Asynchronous HTTP Server">
-                          <label>Asynchronous HTTP server.</label>
-                      </figure>
+                      <% project.filter(projectElem => !projectElem.highlight).forEach(projectElem => { %>
+                        <figure>
+                            <% if (projectElem.ribbon !== undefined) { %>
+                              <a class="github-fork-ribbon" data-ribbon="<%= projectElem.ribbon %>" title="<%= projectElem.ribbon %>"><%= projectElem.ribbon %></a>
+                            <% } %>
+                            <figcaption><%= projectElem.title %></figcaption>
+                            <img src="<%= projectElem.image %>" alt="<%= projectElem.title %>">
+                            <label><%= projectElem.label %></label>
+                        </figure>
+                        <% }); %>
                     </div>
                 </section>
                 <section id="about">
@@ -396,10 +332,11 @@
                           </div>       
 
                     <div class="social">
-                        <i class="fab fa-linkedin"></i>
-                        <i class="fab fa-github-square"></i>
-                        <i class="fab fa-google-plus-square"></i>
-                        <i class="fab fa-facebook-square"></i>
+                        <a href="tel:0770709317"><i class="fas fa-phone-square"></i></a>
+                        <a href="https://www.linkedin.com/in/mihail-feraru/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/JustBeYou" target="_blank"><i class="fab fa-github-square"></i></a>
+                        <a href="mailto:mihailferaru2000@gmail.com"><i class="fab fa-google-plus-square"></i></a>
+                        <a href="https://www.facebook.com/ferarumihail" target="_blank"><i class="fab fa-facebook-square"></i></a>
                     </div>
                 </section>
             </main>
