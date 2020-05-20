@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('littlewho.dev:server');
 var http = require('http');
+var socketio = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,9 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var realtimeAnalytics = require('../realtime-analytics');
+var io = socketio(server);
+io.on('connection', realtimeAnalytics);
 
 /**
  * Listen on provided port, on all network interfaces.
