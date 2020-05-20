@@ -10,6 +10,7 @@ const auth = require('./auth.js');
 const database = require('./database.js');
 const pageRouter = require('./routes/page.js');
 const userRouter = require('./routes/user.js');
+const analyticsRouter = require('./routes/analytics.js');
 
 database();
 
@@ -31,6 +32,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use('/', pageRouter);
 app.use('/', userRouter);
+app.use('/', analyticsRouter)
 app.use('/ip', (req, res) => {
   res.json({
     ip: req.connection.remoteAddress,
