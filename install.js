@@ -56,6 +56,7 @@ async function installWebpages() {
     for (const project of installerConfig.projects) {
         const newProject = new Project(project);
         await newProject.save();
+        console.log('Added project', newProject.title);
     }
 
     for (const page of installerConfig.pages) {
