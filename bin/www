@@ -22,9 +22,12 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var realtimeAnalytics = require('../realtime-analytics');
+var chatHandler = require('../chat');
 var io = socketio(server);
 var analyticsSocket = io.of('/realtime-analytics');
 analyticsSocket.on('connection', realtimeAnalytics);
+var chatSocket = io.of('/chat');
+chatSocket.on('connection', chatHandler);
 
 /**
  * Listen on provided port, on all network interfaces.
