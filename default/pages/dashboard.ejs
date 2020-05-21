@@ -1,6 +1,18 @@
 <% include ../parts/admin-header %>
 
+<template id="page-option">
+    <option value="page id">Page name</option>
+</template>
+
 <h1>Admin dashboard</h1>
+
+<div>
+    <select id="page-select">
+        <option value="/">Index (/)</option>
+    </select>
+    <button id="page-change">View page statistics</button>
+</div>
+
 <canvas id="visits"></canvas>
 <canvas id="sections"></canvas>
 <canvas id="actions"></canvas>
