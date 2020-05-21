@@ -6,6 +6,7 @@
         <% include ../parts/meta %>
         <% include ../parts/styles %>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+        <link rel="stylesheet" href="/stylesheets/chat.css" />
     </head>
     
     <body>
@@ -351,6 +352,9 @@
                 <small>Copyrights and notes</small>
             </footer>
         </div>
+
+        <% include ../parts/chat %>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha256.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>

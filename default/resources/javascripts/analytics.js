@@ -27,7 +27,7 @@ window.addEventListener('load', async () => {
 
 function addLinksHandlers() {
     [...document.querySelectorAll('a')]
-        .map((element) => ({element, link: element.getAttribute('href')}))
+        .map((element) => ({element, link: element.getAttribute('href') || element.id}))
         .forEach(element => {
             element.element.addEventListener('click', () => {
                 logger({type:'click', message: `User clicked on ${element.link}`, target: element.link});
