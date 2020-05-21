@@ -23,7 +23,8 @@ app.set('port', port);
 var server = http.createServer(app);
 var realtimeAnalytics = require('../realtime-analytics');
 var io = socketio(server);
-io.on('connection', realtimeAnalytics);
+var analyticsSocket = io.of('/realtime-analytics');
+analyticsSocket.on('connection', realtimeAnalytics);
 
 /**
  * Listen on provided port, on all network interfaces.

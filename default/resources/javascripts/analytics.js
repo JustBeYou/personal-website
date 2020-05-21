@@ -7,7 +7,7 @@
 
 let socket;
 window.addEventListener('load', async () => {
-    socket = io();
+    socket = io('/realtime-analytics');
     
     await generateSessionId();
     const systemInfo = await getSystemInfo();
