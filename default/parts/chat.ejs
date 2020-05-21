@@ -1,0 +1,47 @@
+<template id="other-user-message">
+    <div class="container">
+        <i class="fas fa-user-tie"></i>
+        <p>Hello. How are you today?</p>
+        <span class="time-right">11:00</span>
+    </div>
+</template>
+
+<template id="my-message">
+    <div class="container darker">
+        <i class="fas fa-user-alt right" class="fas fa-user-alt"></i>
+        <p>Hey! I'm fine. Thanks for asking!</p>
+        <span class="time-left">11:01</span>
+      </div>
+</template>
+
+<div class="chat-container">
+    <button class="chat-button">Live chat</button>
+
+    <div class="chat-box">
+        <div class="chat-toolbar">
+            <div class="title">Live chat</div>
+            <ul>
+                <li>
+                    <a id="chat-minimize">
+                        <i class="fas fa-window-minimize"></i>
+                    </a>        
+                </li>
+                <li>
+                    <a id="chat-close">
+                        <i class="fas fa-times"></i>
+                    </a>        
+                </li>
+            </ul>
+        </div>
+        
+        <div class="chat-content">
+        </div>
+
+        <div class="chat-input">
+            <input id="chat-message-box" type="text" placeholder="Type your message..." />
+            <button id="chat-send-button"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/chat.js"></script>
