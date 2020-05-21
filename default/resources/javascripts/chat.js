@@ -2,6 +2,9 @@ window.addEventListener('load', () => {
     const chatButton = document.querySelector('button.chat-button');
     chatButton.addEventListener('click', chatDisplayControl);
 
+    const chatSettingsButton = document.querySelector('a#chat-settings');
+    chatSettingsButton.addEventListener('click', changeSettings);
+
     const chatMinimizeButton = document.querySelector('a#chat-minimize');
     chatMinimizeButton.addEventListener('click', chatDisplayControl);
 
@@ -15,7 +18,7 @@ window.addEventListener('load', () => {
     const chatSendButton = document.querySelector('button#chat-send-button');
     chatSendButton.addEventListener('click',  () => {
         chatSocket.emit('message', chatInputBox.value);
-        drawMessage('You', encodeHTML(chatInputBox.value), '#my-message', 'left');
+        drawMessage('You', encodeHTML(chatInputBox.value), 'left', '', '<i class="fas fa-user-tie right"></i>');
         chatInputBox.value = '';
     });
 
@@ -25,6 +28,16 @@ window.addEventListener('load', () => {
             chatSendButton.click();
         }
     }); 
+
+    const picker = new EmojiButton();
+    picker.on('emoji', emoji => {
+        chatInputBox.value += emoji;
+    });
+  
+    const chatEmojiButton = document.querySelector('button#chat-emoji-button');
+    chatEmojiButton.addEventListener('click', () => {
+      picker.togglePicker(chatEmojiButton);
+    });
 });
 
 function chatDisplayControl() {
@@ -43,38 +56,78 @@ function chatDisplayControl() {
 }
 
 let chatSocket;
+let username = 'John Doe';
+let theme = 'darker';
 function loadChat() {
-    console.log('chat init');;
     chatSocket = io('/chat');
-    chatSocket.emit('login', {name: 'John Doe'});
+    chatSocket.emit('login', {name: username});
 
     chatSocket.on('message', handleMessage);
+    chatSocket.on('theme', (newTheme) => {
+        handleThemeChange(newTheme);
+    });
+
     chatLoaded = true;
+}
+
+function changeSettings() {
+    const newUser = prompt('Username', username);
+    if (newUser !== null && newUser !== username) {
+        chatSocket.emit('username', newUser);
+        username = newUser;
+    }
+
+    const newTheme = prompt('Theme', theme);
+    if (newTheme !== null && newTheme !== theme) {
+        chatSocket.emit('theme', newTheme);
+        handleThemeChange(newTheme);
+    }
+}
+
+function handleThemeChange(newTheme) {
+    if (!['red', 'blue', 'yellow', 'darker'].includes(newTheme)) return ;
+
+    const messages = [...document.querySelectorAll('.container')];
+    messages.forEach((message) => {
+        if (message.classList.contains(theme)) {
+            message.classList.remove(theme);
+            message.classList.add(newTheme);
+        }
+    });
 }
 
 function handleMessage(message) {
     const sender = encodeHTML(message.sender);
     const content = encodeHTML(message.message);
 
-    drawMessage(sender, content, '#other-user-message', 'right');
+    if (sender === 'server') drawMessage(sender, content, 'right', 'lighter', '');
+    else drawMessage(sender, content, 'right', theme, '<i class="fas fa-user-alt"></i>');
 }
 
-function drawMessage(sender, content, messageType, timeAlign) {
+function drawMessage(sender, content, timeAlign, colorClass, avatar) {
     const chatContent = document.querySelector('.chat-content');
-    const messageTemplate = document.querySelector(messageType);
+    const messageTemplate = document.querySelector('#message-template');
     
     const newMessage = messageTemplate.content.cloneNode(true);
+    
     newMessage.querySelector('p').innerHTML = content;
 
+    const newMessageContainer = newMessage.querySelector('.container');
+    if (colorClass !== '') newMessageContainer.classList.add(colorClass);
+
     const currentDate = new Date();
-    newMessage.querySelector(`span.time-${timeAlign}`).innerHTML = `${sender} at ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const newMessageTimeSpan = newMessage.querySelector(`span`);
+    newMessageTimeSpan.classList.add(`time-${timeAlign}`);
+    newMessageTimeSpan.innerHTML = `${sender} at ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
+    newMessageContainer.innerHTML = avatar + newMessageContainer.innerHTML;
 
     chatContent.appendChild(newMessage);
     chatContent.scrollTop = chatContent.scrollHeight;
 }
 
 function unloadChat() {
-    socket.close();
+    chatSocket.close();
     chatSocket = null;
     chatLoaded = false;
 }

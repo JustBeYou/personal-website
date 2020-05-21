@@ -14,6 +14,20 @@ function handleConnect(clientSocket) {
         clientSocket.broadcast.emit('message', {sender: activeUsers[clientSocket.id].name, message});
     });
 
+    clientSocket.on('username', (newUser) => {
+        if (newUser === null || newUser === undefined) return ;
+       
+        const newUserId = newUser + '#' + makeid(6);
+        clientSocket.broadcast.emit('message', {sender: 'server', message: `User ${activeUsers[clientSocket.id].name} changed his name to ${newUserId}`});
+
+        activeUsers[clientSocket.id].name = newUserId;
+    });
+
+    clientSocket.on('theme', (newTheme) => {
+        if (newTheme === null || newTheme === undefined || !['darker', 'red', 'blue', 'yellow'].includes(newTheme)) return ;
+        clientSocket.broadcast.emit('theme', newTheme);
+    });
+
     clientSocket.on('disconnect', () => handleDisconnect(clientSocket));
 }
 
