@@ -12,6 +12,26 @@
     border-color: #ccc;
     background-color: #ddd;
   }
+
+  .blue {
+    border-color: rgb(128, 158, 212);
+    background-color: rgb(148, 182, 245);
+  }
+
+  .red {
+    border-color: rgb(199, 120, 120);
+    background-color: rgb(240, 145, 145);
+  }
+
+  .yellow {
+    border-color: rgb(217, 235, 115);
+    background-color: rgb(226, 245, 120);
+  }
+
+  .lighter {
+    border: 2px solid #e9e9e9;
+    background-color: #ffffff;
+  }
   
   /* Clear floats */
   .container::after {
@@ -224,7 +244,17 @@ div.chat-input input#chat-message-box {
     margin-right: 3%;
 }
 
+div.chat-input button#chat-emoji-button {
+    margin-right: 1%;
+    margin-left: auto;
+    border-radius: 10px;
+}
+
 div.chat-input button#chat-send-button {
     margin-right: 3%;
-    margin-left: auto;
+    border-radius: 10px;
+}
+
+.wrapper {
+    z-index: 1005;
 }

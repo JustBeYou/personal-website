@@ -92,6 +92,10 @@
     div.pages-editor-cant-show {
         display: block;
     }
+
+    div.chat-input button#chat-emoji-button {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 480px) {
