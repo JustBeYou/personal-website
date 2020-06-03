@@ -25,6 +25,13 @@ router.post('/signin', async (req, res) => {
 });
 
 router.post('/signout', async (req, res) => {
+    await safeResponse(res, async () => {
+        setCookie(res, '');
+        res.json({});
+    });
+});
+
+router.post('/signout', async (req, res) => {
     await safeResponse(res, () => {
         clearCookie(res);
         res.json({message: 'signed out'});

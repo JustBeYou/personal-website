@@ -15,4 +15,11 @@ window.addEventListener('load', async () => {
 
         target.appendChild(newListElem);
     }
+
+    document.querySelector('button#sign-out').addEventListener('click', async () => {
+        await fetch('/signout', {
+            method: 'POST',
+        });
+        window.location.href = '/';
+    });
 });
