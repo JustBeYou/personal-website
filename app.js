@@ -40,8 +40,20 @@ app.use('/ip', (req, res) => {
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function(req, res, next){
+  res.status(404);
+
+  if (req.accepts('html')) {
+    res.render('pages/404', { url: req.url });
+    return;
+  }
+
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+
+  res.type('txt').send('Not found');
 });
 
 // error handler
