@@ -16,14 +16,30 @@
                     "label": "Projects",
                     "icon": "fas fa-project-diagram",
                     "href": "#projects"
-                },
-                {
-                    "label": "About",
-                    "icon": "fas fa-address-card",
-                    "href": "#about"
                 }
             ],
             "filePath": "default/pages/index.ejs",
+            "deps": ["project"]
+        },
+        {
+            "title": "404",
+            "displayTitle": "Not found",
+            "description": "not found",
+            "keywords": "not found",
+            "author": "Mihail Feraru",
+            "navButtons": [
+                {
+                    "label": "Home",
+                    "icon": "fas fa-home",
+                    "href": "/#home"
+                },
+                {
+                    "label": "Projects",
+                    "icon": "fas fa-project-diagram",
+                    "href": "/#projects"
+                }
+            ],
+            "filePath": "default/pages/404.ejs",
             "deps": ["project"]
         },
         {
@@ -33,6 +49,14 @@
             "keywords": "login,signin,auth",
             "author": "Mihail Feraru",
             "filePath": "default/pages/signin.ejs"
+        },
+        {
+            "title": "register",
+            "displayTitle": "Register",
+            "description": "Register webpage",
+            "keywords": "register,new user",
+            "author": "Mihail Feraru",
+            "filePath": "default/pages/register.ejs"
         },
         {
             "title": "dashboard",
