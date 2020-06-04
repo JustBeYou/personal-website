@@ -6,7 +6,34 @@ const {Router} = require('express');
 const {safeResponse} = require('./error.js');
 
 const router = new Router();
-const cookieField = 'token';
+const tokenCookieField = 'token';
+
+function validate(value) {
+    return value !== null && value !== undefined;
+}
+
+router.post('/register', async (req, res) => {
+    await safeResponse(res, async () => {
+        const keys = ['name', 'password', 'email', 'age'];
+        console.log(req.body);
+        keys.forEach(key => {
+            console.log(key, req.body[key]);
+            if (validate(req.body[key]) === false) throw 'Invalid field value';
+        });
+        const {name, password, email, userClass, age} = req.body;
+
+        const newUser = new User({
+            name, 
+            password, 
+            email,
+            userClass,
+            age,
+            admin: false
+        });
+        await newUser.save();
+        res.json({status: 'created'});
+    });
+});
 
 router.post('/signin', async (req, res) => {
     await safeResponse(res, async () => {
@@ -39,12 +66,12 @@ router.post('/signout', async (req, res) => {
 });
 
 function setCookie(res, token) {
-    res.cookie(cookieField, token, {maxAge: 9000000000, httpOnly: true, /*secure: true*/ });
-    res.append('Set-Cookie', cookieField + '=' + token + ';');
+    res.cookie(tokenCookieField, token, {maxAge: 9000000000, httpOnly: true, /*secure: true*/ });
+    res.append('Set-Cookie', tokenCookieField + '=' + token + ';');
 }
 
 function clearCookie(res) {
-    res.clearCookie(cookieField);
+    res.clearCookie(tokenCookieField);
 }
 
 async function authUser(name, password) {
@@ -59,13 +86,16 @@ async function authUser(name, password) {
         throw 'Invalid password.';
     }
 
-    return {token: jwt.sign({name: user.name, admin: user.admin}, config.secret), redirect: user.admin ? 'admin' : 'user'};
+    return {
+        token: jwt.sign({name: user.name, admin: user.admin}, config.secret), 
+        redirect: user.admin ? 'admin' : 'user',
+    };
 }
 
 function authMiddleware(req, res, next) {
     req.user = null;
 
-    const token = req.cookies[cookieField];
+    const token = req.cookies[tokenCookieField];
     if (token === undefined) {
         next();
         return ;
