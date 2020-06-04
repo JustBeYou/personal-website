@@ -2,10 +2,16 @@ window.addEventListener('load', displayCharts);
 
 let activePage = '/';
 
-function displayCharts() {
-    displayVistorsChart();
-    displaySectionsChart();
+function rounder(num) {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+} 
+let totalUniqueVisitors;
+
+async function displayCharts() {
     displayActionsChart();
+
+    await displayVistorsChart();
+    displaySectionsChart();
 }
 
 async function displayVistorsChart() {
@@ -19,7 +25,9 @@ async function displayVistorsChart() {
     const data = await resp.json();
 
     const uniqueVisitors = data.map(day => day.unique);
+    totalUniqueVisitors = uniqueVisitors.reduce((acc, elem) => acc + elem, 0);
     const totalVisitors = data.map(day => day.total);
+
 
     const config = {
         type: 'line',
@@ -86,13 +94,13 @@ async function displaySectionsChart() {
         body: JSON.stringify({page: activePage, days: historySize}),
     });
     const data = await resp.json();
-    const total = Object.keys(data).reduce((total, current) => total + data[current], 0);
+    const total = rounder(Object.keys(data).reduce((total, current) => total + data[current], 0) / totalUniqueVisitors);
 
     const config = {
         type: 'pie',
         data: {
             datasets: [{
-                data: Object.keys(data).map(key => data[key]),
+                data: Object.keys(data).map(key => rounder(data[key] / totalUniqueVisitors)),
                 backgroundColor: [
                     chartColors.red,
                     chartColors.orange,
@@ -109,7 +117,7 @@ async function displaySectionsChart() {
             responsive: true,
             title: {
                 display: true,
-                text: `Minutes spent on each section, total: ${total}min`,
+                text: `Minutes spent on each section, total average: ${total}min`,
                 fontSize: '24',
             }
         }
