@@ -6,11 +6,16 @@
 </template>
 
 <div class="chat-container">
+    <input type="color" id="colorpicker" tabindex=-1 class="hidden">
     <button class="chat-button">Live chat</button>
     <div class="chat-box">
         <div class="chat-toolbar">
-            <div class="title">Live chat</div>
             <ul>
+                <li>
+                    <a id="chat-users-list">
+                        <i class="fas fa-user-alt"></i>
+                    </a>
+                </li>
                 <li>
                     <a id="chat-settings">
                         <i class="fas fa-cog"></i>

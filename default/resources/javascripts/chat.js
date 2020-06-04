@@ -1,6 +1,18 @@
 window.addEventListener('load', () => {
+    const colorPicker = document.querySelector('#colorpicker');
+    colorPicker.addEventListener('change', () => {
+        const newTheme = colorPicker.value;
+        if (newTheme !== null && newTheme !== theme) {
+            chatSocket.emit('theme', newTheme);
+            handleThemeChange(newTheme);
+        }
+    });
+
     const chatButton = document.querySelector('button.chat-button');
     chatButton.addEventListener('click', chatDisplayControl);
+
+    const chatUsersListButton = document.querySelector('a#chat-users-list');
+    chatUsersListButton.addEventListener('click', showUsers);
 
     const chatSettingsButton = document.querySelector('a#chat-settings');
     chatSettingsButton.addEventListener('click', changeSettings);
@@ -57,8 +69,11 @@ function chatDisplayControl() {
 
 let chatSocket;
 let username = 'John Doe';
-let theme = 'darker';
+let theme = '#dddddd';
 function loadChat() {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername !== null) username = storedUsername;
+
     chatSocket = io('/chat');
     chatSocket.emit('login', {name: username});
 
@@ -67,33 +82,44 @@ function loadChat() {
         handleThemeChange(newTheme);
     });
 
+    chatSocket.on('users', (message) => {
+        const users = message['users'];
+        const usersString = users.join(', ');
+        alert('Active users: ' + usersString);
+    });
+
     chatLoaded = true;
 }
 
-function changeSettings() {
-    const newUser = prompt('Username', username);
-    if (newUser !== null && newUser !== username) {
-        chatSocket.emit('username', newUser);
-        username = newUser;
-    }
+function showUsers() {
+    chatSocket.emit('users', {});
+}
 
-    const newTheme = prompt('Theme', theme);
-    if (newTheme !== null && newTheme !== theme) {
-        chatSocket.emit('theme', newTheme);
-        handleThemeChange(newTheme);
-    }
+function changeSettings() {
+    const picker = document.querySelector('#colorpicker');
+    picker.focus();
+    picker.click();
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    result = result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+    return `rgb(${result.r}, ${result.g}, ${result.b})`;
 }
 
 function handleThemeChange(newTheme) {
-    if (!['red', 'blue', 'yellow', 'darker'].includes(newTheme)) return ;
-
     const messages = [...document.querySelectorAll('.container')];
     messages.forEach((message) => {
-        if (message.classList.contains(theme)) {
-            message.classList.remove(theme);
-            message.classList.add(newTheme);
+        console.log(message.style.backgroundColor, hexToRgb(theme));
+        if (message.style.backgroundColor === hexToRgb(theme)) {
+            message.style.backgroundColor = newTheme;
         }
     });
+    theme = newTheme;
 }
 
 function handleMessage(message) {
@@ -113,7 +139,8 @@ function drawMessage(sender, content, timeAlign, colorClass, avatar) {
     newMessage.querySelector('p').innerHTML = content;
 
     const newMessageContainer = newMessage.querySelector('.container');
-    if (colorClass !== '') newMessageContainer.classList.add(colorClass);
+    if (colorClass !== '' && colorClass[0] !== '#') newMessageContainer.classList.add(colorClass);
+    if (colorClass[0] === '#') newMessageContainer.style.backgroundColor = colorClass;
 
     const currentDate = new Date();
     const newMessageTimeSpan = newMessage.querySelector(`span`);

@@ -1,4 +1,5 @@
 const activeUsers = {};
+let currentTheme = null;
 
 function handleConnect(clientSocket) {
     clientSocket.on('login', (message) => {
@@ -7,6 +8,7 @@ function handleConnect(clientSocket) {
         activeUsers[clientSocket.id] = {
             name: message.name + '#' + makeid(6),
         }
+        if (currentTheme !== null) clientSocket.emit('theme', currentTheme);
         clientSocket.broadcast.emit('message', {sender: 'server', message: `User ${activeUsers[clientSocket.id].name} has entered the chat.`});
     });
 
@@ -24,8 +26,15 @@ function handleConnect(clientSocket) {
     });
 
     clientSocket.on('theme', (newTheme) => {
-        if (newTheme === null || newTheme === undefined || !['darker', 'red', 'blue', 'yellow'].includes(newTheme)) return ;
+        if (newTheme === null || newTheme === undefined) return ;
+        currentTheme = newTheme;
         clientSocket.broadcast.emit('theme', newTheme);
+        clientSocket.broadcast.emit('message', {sender: 'server', message: `User ${activeUsers[clientSocket.id].name} changed colors in chat to ${newTheme}`});
+    });
+
+    clientSocket.on('users', () => {
+        const users = Object.keys(activeUsers).map(key => activeUsers[key].name);
+        clientSocket.emit('users', {users});
     });
 
     clientSocket.on('disconnect', () => handleDisconnect(clientSocket));
