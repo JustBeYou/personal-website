@@ -433,3 +433,61 @@ div.main-layout > footer {
 canvas {
     margin-top: 2em !important;
 }
+
+.mt-5 {
+    margin-top: 5em;
+}
+
+.mb-5 {
+    margin-bottom: 5em;
+}
+
+#logged-in {
+    display: none;
+}
+
+#anonymous {
+    display: block;
+}
+
+.user-info {
+    font-size: 0.5em;
+}
+
+.user-info div {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+}
+
+.user-info label {
+    margin-top: 0.8em;
+    font-size: 1em;
+}
+
+.user-info i {
+    font-size: 1em !important;
+    margin-right: 0.5em !important;
+}
+
+.user-info button {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }

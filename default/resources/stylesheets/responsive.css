@@ -21,6 +21,14 @@
         display: none;
     }
 
+    #user-info div {
+        font-size: 1.1em;
+    }
+
+    #user-info label {
+        display: block !important;
+    }
+
     div.main-layout div.logo img {
         width: 8em;
         height: 3.5em;
