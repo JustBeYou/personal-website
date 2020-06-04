@@ -24,7 +24,7 @@ function handleAsideResize() {
     switchAsideState();
 }
 
-function createUserRow({_id, name, email, admin}, userRowTemplate) {
+function createUserRow({_id, name, email, admin, age}, userRowTemplate) {
     const newRow = userRowTemplate.content.cloneNode(true);
     const tr = newRow.querySelector("tr");
     tr.id = _id;
@@ -32,9 +32,10 @@ function createUserRow({_id, name, email, admin}, userRowTemplate) {
     tds[0].textContent = _id;
     tds[1].textContent = name;
     tds[2].textContent = email;
-    tds[3].textContent = admin ? "Yes" : "No";
+    tds[3].textContent = age;
+    tds[4].textContent = admin ? "Yes" : "No";
 
-    const actionsTd = tds[4];
+    const actionsTd = tds[5];
     const deleteButton = actionsTd.querySelector('.user-delete');
     const makeAdminButton = actionsTd.querySelector('.user-rights');
 
@@ -56,7 +57,7 @@ function createUserRow({_id, name, email, admin}, userRowTemplate) {
 
         makeAdminButton.onclick = makeAdminHandler;
         makeAdminButton.textContent = "Make admin";
-        tds[3].textContent = "No";
+        tds[4].textContent = "No";
     };
     const makeAdminHandler = async () => {
         await fetch(`/user/${_id}`, {
@@ -69,7 +70,7 @@ function createUserRow({_id, name, email, admin}, userRowTemplate) {
 
         makeAdminButton.onclick = removeAdminHandler;
         makeAdminButton.textContent = "Remove admin";
-        tds[3].textContent = "Yes";
+        tds[4].textContent = "Yes";
     };
 
     if (admin) {
@@ -141,14 +142,43 @@ async function addUsersToTable() {
 }
 
 function onloadHandler() {
+    displayUserInfo();
+
     const activator = document.querySelector(".activate-aside");
-    activator.addEventListener('click', handleAsideResize);
+    if (activator !== null) {
+        activator.addEventListener('click', handleAsideResize);
+        window.addEventListener('scroll', () => {
+            resizeAside(asideCollapsedWidth);
+            asideMenuState = "collapsed";
+        });
+    }
 
     addUsersToTable();
 }
 
 window.onload = onloadHandler;
-window.addEventListener('scroll', () => {
-    resizeAside(asideCollapsedWidth);
-    asideMenuState = "collapsed";
-});
+
+function displayUserInfo() {
+    const username = localStorage.getItem('username');
+    
+    if (username === null) {
+        document.querySelector('button#goto-sign-in').addEventListener('click', () => {
+            window.location.href = '/signin.html';
+        });
+        document.querySelector('button#goto-register').addEventListener('click', () => {
+            window.location.href = '/register.html';
+        });
+        return ;
+    }
+
+    document.querySelector('#anonymous').style.display = "none";
+    document.querySelector('#logged-in').style.display = "block";
+    document.querySelector('#logged-in').querySelector('label').innerHTML = `Hello, ${username}!`;
+    document.querySelector('button#sign-out').addEventListener('click', async () => {
+        await fetch('/signout', {
+            method: 'POST',
+        });
+        window.location.href = '/';
+        localStorage.removeItem('username');
+    });
+}
