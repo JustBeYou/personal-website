@@ -121,6 +121,7 @@ async function createNewUser() {
     usersTableContent.insertBefore(userRow, usersTableContent.firstChild);
 }
 
+let totalUsers;
 async function addUsersToTable() {
     const usersTableContent = document.getElementById("users-table-content");
     if (usersTableContent === null) return ;
@@ -131,7 +132,9 @@ async function addUsersToTable() {
     const usersResp = await resp.json();
 
     const userRowTemplate = document.getElementById("user-row");
+    totalUsers = 0;
     for (const userData of usersResp.users) {
+        totalUsers += 1;
         const newRow = createUserRow(userData, userRowTemplate);
         usersTableContent.appendChild(newRow);
     }
@@ -141,7 +144,7 @@ async function addUsersToTable() {
     usersTableContent.appendChild(newRow);
 }
 
-function onloadHandler() {
+async function onloadHandler() {
     displayUserInfo();
 
     const activator = document.querySelector(".activate-aside");
@@ -153,7 +156,26 @@ function onloadHandler() {
         });
     }
 
-    addUsersToTable();
+    await addUsersToTable();
+    funnyAnimationSetup();
+}
+
+function funnyAnimationSetup() {
+    setInterval(selectRandomRow, 1000);
+}
+
+let selectedRow;
+function selectRandomRow() {
+    const randomRowIndex =  Math.floor(Math.random() * totalUsers);
+    selectedRow = document.querySelectorAll('tr')[randomRowIndex];
+    selectedRow.style.backgroundColor = 'red'; 
+
+    setTimeout(deselectTheRow, 500);
+}
+
+function deselectTheRow() {
+    selectedRow.style.backgroundColor = ''; 
+    selectedRow.style.opacity = ''; 
 }
 
 window.onload = onloadHandler;
